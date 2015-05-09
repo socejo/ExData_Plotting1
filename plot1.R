@@ -4,8 +4,7 @@
 ## you have the "household_power_consumption.txt" file 
 
 ## Read complete data set and subset data for dates of interest  
-file <- "setwd("EDA")
-household_power_consumption.txt"
+file <- "household_power_consumption.txt"
 datos <- read.table(file, sep=";", header=TRUE, na.string="?")
 seleccion <- (datos$Date == "1/2/2007" | datos$Date == "2/2/2007")
 datos <- datos[seleccion,] 
