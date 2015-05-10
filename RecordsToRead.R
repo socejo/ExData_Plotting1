@@ -1,8 +1,15 @@
 ## This script can be used to determine how many records 
 ## should be skipped to avoid reading the complete data set
-## into memory. This script is considering the data set is
-## ordered by Date.  
+## into memory, and how many records to read from there.
 
+## The script is considering the data set is ordered by Date.
+
+## 1. Save this script on your PC
+## 2. Set the working directory where you have the original data set
+## 3. Source the script into R
+## 4. Take note of the numbers the script generates
+
+file <- "household_power_consumption.txt"
 count <- 1
 skiped <- 0 	
 while (count<220){
@@ -19,7 +26,8 @@ skiped <- skiped + 10000
 count <- count+1
 }
 
-## Now determine how many records to read 	 
+## Now this script determines how many records to read, following the same 
+## structure 	 
 count <- 1
 skiped <- start 	
 while (count<220){
@@ -35,17 +43,3 @@ while (count<220){
 skiped <- skiped + 10000
 count <- count+1
 }
-
-## The following can be used to read only the records related 
-## to the dates of interest
-  
-## Read first record, to get the headings
-data <- read.table(file, sep=";", na.string="?", header=TRUE, nrows=1)
-columnnames <- names(data)
- 
-## Substitute start with the number of record previously printed 
-## Substitute recordsToRead with the number of records prevously printed
-  
-## Read only records of interest 
-data <- read.table(file, sep=";", na.string="?", skip=start, nrows=recordsToRead)
-names(data) <- columnnames
